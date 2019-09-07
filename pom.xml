@@ -10,7 +10,7 @@
 	    <artifactId>shiro-all</artifactId>
 	    <version>1.4.1</version>
 	    <type>pom</type> 
-	</dependency>
+	</dependency> 
 	<dependency>
 		<groupId>javax.servlet</groupId>
 		<artifactId>javax.servlet-api</artifactId>
