@@ -1,0 +1,3 @@
+该包演示如何自定义一个AuthenticationStrategy，并使用它
+
+仔细阅读例子输出的日志信息即可
