@@ -6,6 +6,7 @@ import org.apache.shiro.authc.AuthenticationToken;
 import org.apache.shiro.authc.IncorrectCredentialsException;
 import org.apache.shiro.authc.SimpleAuthenticationInfo;
 import org.apache.shiro.authc.UnknownAccountException;
+import org.apache.shiro.authc.pam.ModularRealmAuthenticator;
 import org.apache.shiro.authz.AuthorizationInfo;
 import org.apache.shiro.authz.SimpleAuthorizationInfo;
 import org.apache.shiro.realm.AuthorizingRealm;
@@ -31,25 +32,17 @@ public class MyRealm extends AuthorizingRealm {
 
 	@Override
 	protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken token) throws AuthenticationException {
-		// 用户传来的账户密码
+		// 用户传来的账户
 		String username = token.getPrincipal().toString();
-		String password = new String((char[])token.getCredentials());
 
-		// 与持久层的账户密码进行匹配
+		// realm只负责判断指定的账户是否存在
 		if(!("foo".equals(username) || "bar".equals(username))) {
 			throw new UnknownAccountException();
 		}
-		if("foo".equals(username)) {
-			if(!"123".equals(password)) {
-				throw new IncorrectCredentialsException();
-			}
-		}
-		if("bar".equals(username)) {
-			if(!"123".equals(password)) {
-				throw new IncorrectCredentialsException();
-			}
-		}
-		return new SimpleAuthenticationInfo(username,password,"myRealm");
+		
+		
+		// 密码比对由上层的ModularRealmAuthenticator来完成（对我们是隐藏的）
+		return new SimpleAuthenticationInfo(username,"123","myRealm");
 	}
 
 }
