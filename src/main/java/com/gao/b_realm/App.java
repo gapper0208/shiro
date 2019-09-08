@@ -6,6 +6,7 @@ import org.apache.shiro.mgt.DefaultSecurityManager;
 import org.apache.shiro.subject.Subject;
 import org.junit.Test;
 
+// ×Ô¶¨Òårealm
 public class App {
 	@Test
 	public void test() throws Exception {
